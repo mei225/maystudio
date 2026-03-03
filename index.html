@@ -381,7 +381,7 @@
     </section>
 
     <!-- 6. Contact Section -->
-    <section id="contact" class="py-24 md:py-32 bg-white px-6">
+    <section id="contact" class="py-24 md:py-32 bg-white px-6 relative">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
             
             <div>
@@ -428,20 +428,22 @@
                 </div>
             </div>
 
-            <div class="bg-zinc-50 p-8 md:p-12 rounded-3xl border border-zinc-200 shadow-sm">
+            <div class="bg-zinc-50 p-8 md:p-12 rounded-3xl border border-zinc-200 shadow-sm relative">
                 <h3 class="text-2xl font-bold mb-8">프로젝트 문의하기</h3>
                 
-                <!-- 
-                    [수정 사항]
-                    1. action="/" 를 추가하여 제출 후 현재 페이지로 안전하게 돌아오게 합니다.
-                    2. netlify 속성을 data-netlify="true" 와 함께 명확하게 지정합니다. 
-                -->
-                <form name="contact" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" class="space-y-6">
-                    
-                    <!-- 넷리파이 폼 필수 식별자 -->
+                <!-- 폼 전송 성공 시 보여줄 메시지 창 -->
+                <div id="form-success-msg" class="hidden absolute inset-0 bg-zinc-50/95 backdrop-blur-sm z-10 rounded-3xl flex flex-col items-center justify-center text-center p-8">
+                    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="check" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-2">문의가 성공적으로 접수되었습니다.</h4>
+                    <p class="text-zinc-500 font-medium">빠른 시일 내에 남겨주신 연락처로 회신해 드리겠습니다. 감사합니다.</p>
+                    <button onclick="document.getElementById('form-success-msg').classList.add('hidden')" class="mt-8 px-6 py-2 bg-black text-white rounded-full font-bold text-sm hover:bg-zinc-800 transition-colors">확인</button>
+                </div>
+
+                <!-- 폼 요소 -->
+                <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-6">
                     <input type="hidden" name="form-name" value="contact" />
-                    
-                    <!-- 스팸 봇 방지용 (사용자에게는 보이지 않음) -->
                     <p class="hidden">
                         <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
                     </p>
@@ -449,7 +451,6 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-2">
                             <label class="text-sm text-zinc-600 font-bold">이름 / 기관(회사)명</label>
-                            <!-- 데이터 전송을 위해 모든 입력 항목에 name 속성 추가 -->
                             <input type="text" name="이름_기관명" required class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 text-zinc-900 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all" placeholder="홍길동 / 밀양시청" />
                         </div>
                         <div class="space-y-2">
@@ -510,6 +511,27 @@
     <!-- 자바스크립트 로직 -->
     <script>
         lucide.createIcons();
+
+        // 넷리파이 폼 AJAX 제출 처리
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(() => {
+                // 성공 시 메시지 창 띄우고 폼 초기화
+                document.getElementById('form-success-msg').classList.remove('hidden');
+                form.reset();
+            })
+            .catch((error) => {
+                alert('문의 제출 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+            });
+        });
 
         // 네비게이션 효과
         const navbar = document.getElementById('navbar');
