@@ -319,63 +319,65 @@
                 <p class="text-lg text-zinc-500 font-medium">합리적이고 투명한 제작 비용 안내. 상세 금액은 기획에 따라 변동될 수 있습니다.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-zinc-100">
-                    <h3 class="text-2xl font-black mb-2">행사 스케치 영상</h3>
-                    <p class="text-zinc-500 mb-8 font-medium">대학 행사, 세미나, 지자체 축제 기록</p>
+            <!-- 모바일에서 깨지지 않도록 padding 조절(p-6) 및 레이아웃 수정 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-zinc-100">
+                    <h3 class="text-xl md:text-2xl font-black mb-2">행사 스케치 영상</h3>
+                    <p class="text-sm md:text-base text-zinc-500 mb-8 font-medium">대학 행사, 세미나, 지자체 축제 기록</p>
                     
                     <div class="space-y-6">
-                        <div class="flex justify-between items-end border-b border-zinc-100 pb-4">
+                        <!-- 모바일에서는 세로(flex-col), 태블릿 이상에서는 가로(sm:flex-row) 배치 -->
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end border-b border-zinc-100 pb-4 gap-2">
                             <div>
-                                <p class="font-bold text-lg">1Day 촬영 및 편집</p>
-                                <p class="text-sm text-zinc-400">당일 행사 스케치 (기획/촬영/편집 포함)</p>
+                                <p class="font-bold text-base md:text-lg">1Day 촬영 및 편집</p>
+                                <p class="text-xs md:text-sm text-zinc-400">당일 행사 스케치 (기획/촬영/편집 포함)</p>
                             </div>
-                            <div class="text-right">
-                                <p class="text-2xl font-black">80만<span class="text-base font-medium text-zinc-500">원 부터</span></p>
+                            <div class="sm:text-right">
+                                <p class="text-xl md:text-2xl font-black">80만<span class="text-sm md:text-base font-medium text-zinc-500">원 부터</span></p>
                             </div>
                         </div>
-                        <div class="flex justify-between items-end border-b border-zinc-100 pb-4">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end border-b border-zinc-100 pb-4 gap-2">
                             <div>
-                                <p class="font-bold text-lg">1박 2일 촬영 및 편집</p>
-                                <p class="text-sm text-zinc-400">장기 캠프, 페스티벌 심층 기록</p>
+                                <p class="font-bold text-base md:text-lg">1박 2일 촬영 및 편집</p>
+                                <p class="text-xs md:text-sm text-zinc-400">장기 캠프, 페스티벌 심층 기록</p>
                             </div>
-                            <div class="text-right">
-                                <p class="text-2xl font-black">150만<span class="text-base font-medium text-zinc-500">원 부터</span></p>
+                            <div class="sm:text-right">
+                                <p class="text-xl md:text-2xl font-black">150만<span class="text-sm md:text-base font-medium text-zinc-500">원 부터</span></p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-black text-white p-8 md:p-10 rounded-3xl shadow-xl shadow-black/5">
-                    <h3 class="text-2xl font-black mb-2">홍보영상 / 유튜브</h3>
-                    <p class="text-zinc-400 mb-8 font-medium">브랜드 가치를 높이는 맞춤형 콘텐츠</p>
+                <div class="bg-black text-white p-6 md:p-10 rounded-3xl shadow-xl shadow-black/5">
+                    <h3 class="text-xl md:text-2xl font-black mb-2">홍보영상 / 유튜브</h3>
+                    <p class="text-sm md:text-base text-zinc-400 mb-8 font-medium">브랜드 가치를 높이는 맞춤형 콘텐츠</p>
                     
                     <div class="space-y-6">
-                        <div class="flex justify-between items-end border-b border-zinc-800 pb-4">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end border-b border-zinc-800 pb-4 gap-2">
                             <div>
-                                <p class="font-bold text-lg">유튜브 콘텐츠 (건당)</p>
-                                <p class="text-sm text-zinc-400">웹예능, 인터뷰, 시리즈물 제작</p>
+                                <p class="font-bold text-base md:text-lg">유튜브 콘텐츠 (건당)</p>
+                                <p class="text-xs md:text-sm text-zinc-400">웹예능, 인터뷰, 시리즈물 제작</p>
                             </div>
-                            <div class="text-right">
-                                <p class="text-2xl font-black">50만<span class="text-base font-medium text-zinc-500">원 부터</span></p>
+                            <div class="sm:text-right">
+                                <p class="text-xl md:text-2xl font-black">50만<span class="text-sm md:text-base font-medium text-zinc-500">원 부터</span></p>
                             </div>
                         </div>
-                        <div class="flex justify-between items-end border-b border-zinc-800 pb-4">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end border-b border-zinc-800 pb-4 gap-2">
                             <div>
-                                <p class="font-bold text-lg">기업 / 지자체 홍보영상</p>
-                                <p class="text-sm text-zinc-400">마스터 홍보영상, 다큐멘터리, CF</p>
+                                <p class="font-bold text-base md:text-lg">기업 / 지자체 홍보영상</p>
+                                <p class="text-xs md:text-sm text-zinc-400">마스터 홍보영상, 다큐멘터리, CF</p>
                             </div>
-                            <div class="text-right">
-                                <p class="text-2xl font-black">300만<span class="text-base font-medium text-zinc-500">원 부터</span></p>
+                            <div class="sm:text-right">
+                                <p class="text-xl md:text-2xl font-black">300만<span class="text-sm md:text-base font-medium text-zinc-500">원 부터</span></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="mt-8 text-center text-zinc-500 text-sm flex items-center justify-center gap-2 font-medium">
-                <i data-lucide="check-circle-2" class="w-4 h-4"></i>
-                모든 견적은 촬영 장비, 투입 인력, 런타임 및 CG 작업량에 따라 세부 협의 후 최종 결정됩니다.
+            <div class="mt-8 text-center text-zinc-500 text-sm flex flex-col md:flex-row items-center justify-center gap-2 font-medium">
+                <i data-lucide="check-circle-2" class="w-4 h-4 hidden md:block"></i>
+                <span>모든 견적은 촬영 장비, 투입 인력, 런타임 및 CG 작업량에 따라<br class="block md:hidden"> 세부 협의 후 최종 결정됩니다.</span>
             </div>
         </div>
     </section>
