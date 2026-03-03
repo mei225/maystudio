@@ -229,8 +229,11 @@
                 <p class="text-lg text-zinc-500 font-medium">메이스튜디오가 만들어낸 시각적 결과물과 신뢰의 파트너들</p>
             </div>
 
-            <!-- 주요 클라이언트 리스트 -->
-            <div class="mb-16">
+            <!-- 파트너사 목록 섹션 (시각적 분리 적용) -->
+            <div class="mb-12">
+                <!-- 섹션 라벨 추가 -->
+                <p class="text-center text-sm font-black text-zinc-300 tracking-widest uppercase mb-6">Trusted By</p>
+                
                 <div class="flex flex-col items-center">
                     <div class="flex flex-wrap justify-center gap-2 md:gap-3 mb-4">
                         <div class="flex items-center gap-1.5 border px-4 py-2 rounded-full font-bold text-sm transition-colors bg-zinc-50 text-zinc-700 border-zinc-200 hover:bg-zinc-100 shadow-sm">
@@ -270,14 +273,23 @@
                 </div>
             </div>
 
-            <!-- 메인 필터 탭 (방송, 기업/지자체 등) -->
-            <div id="main-filter-tabs" class="flex overflow-x-auto hide-scrollbar justify-start md:justify-center gap-2 md:gap-3 mb-4 pb-2">
-                <!-- JS로 렌더링됨 -->
-            </div>
+            <!-- 시각적 구분선 (Divider) -->
+            <div class="w-full h-px bg-zinc-200 my-16"></div>
 
-            <!-- 서브 필터 탭 (밀톡, 히든챔피언 등) -->
-            <div id="sub-filter-tabs" class="flex flex-wrap justify-center gap-2 mb-10 hidden">
-                <!-- JS로 렌더링됨 -->
+            <!-- 포트폴리오 갤러리 섹션 -->
+            <div class="mb-10">
+                <!-- 섹션 라벨 추가 -->
+                <p class="text-center text-sm font-black text-zinc-300 tracking-widest uppercase mb-6">Projects</p>
+
+                <!-- 메인 필터 탭 (방송, 기업/지자체 등) -->
+                <div id="main-filter-tabs" class="flex overflow-x-auto hide-scrollbar justify-start md:justify-center gap-2 md:gap-3 mb-4 pb-2">
+                    <!-- JS로 렌더링됨 -->
+                </div>
+
+                <!-- 서브 필터 탭 (밀톡, 히든챔피언 등) -->
+                <div id="sub-filter-tabs" class="flex flex-wrap justify-center gap-2 hidden">
+                    <!-- JS로 렌더링됨 -->
+                </div>
             </div>
 
             <!-- 대표 영상 썸네일 그리드 -->
