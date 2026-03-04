@@ -492,6 +492,16 @@
         </div>
     </section>
 
+    <!-- 유튜브 비디오 팝업(모달) 영역 추가 -->
+    <div id="video-modal" class="fixed inset-0 z-[100] bg-black/90 hidden flex-col justify-center items-center p-4 md:p-12 backdrop-blur-sm transition-opacity">
+        <button onclick="closeVideoModal()" class="absolute top-4 right-4 md:top-8 md:right-8 text-white/70 hover:text-white transition-colors z-10 p-2">
+            <i data-lucide="x" class="w-8 h-8 md:w-10 md:h-10"></i>
+        </button>
+        <div class="relative w-full max-w-5xl aspect-video bg-black rounded-xl md:rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10" onclick="event.stopPropagation()">
+            <iframe id="video-iframe" class="absolute inset-0 w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="py-12 bg-white border-t border-zinc-200 text-center md:text-left px-6">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
@@ -802,14 +812,20 @@
                 grid.innerHTML = '<div class="col-span-full text-center py-12 text-zinc-400 font-medium">등록된 포트폴리오가 없습니다.</div>';
             } else {
                 itemsToShow.forEach(item => {
-                    const a = document.createElement('a');
-                    a.href = item.url;
-                    a.target = item.url !== "#" ? "_blank" : "_self";
-                    a.className = "group block cursor-pointer flex flex-col h-full";
+                    const card = document.createElement('div');
+                    card.className = "group block cursor-pointer flex flex-col h-full";
                     
+                    const videoId = getYoutubeId(item.url);
                     const thumbnail = getThumbnail(item.url);
                     
-                    a.innerHTML = `
+                    // 유튜브 ID가 존재하면 팝업을 열고, 아니면 기존처럼 링크로 이동
+                    if (videoId) {
+                        card.onclick = () => openVideoModal(videoId);
+                    } else if (item.url !== "#") {
+                        card.onclick = () => window.open(item.url, '_blank');
+                    }
+                    
+                    card.innerHTML = `
                         <div class="relative aspect-video bg-zinc-100 rounded-2xl overflow-hidden mb-4 border border-zinc-200 shadow-sm group-hover:shadow-xl transition-all duration-300">
                             <!-- 추출한 썸네일 이미지 표시 -->
                             <img src="${thumbnail}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80'">
@@ -825,7 +841,7 @@
                             <span class="text-[10px] font-bold bg-zinc-100 text-zinc-600 px-2 py-1 rounded border border-zinc-200">${item.role}</span>
                         </div>
                     `;
-                    grid.appendChild(a);
+                    grid.appendChild(card);
                 });
             }
 
@@ -844,6 +860,40 @@
             visibleCount += 6;
             renderPortfolio();
         }
+
+        // 모달 열기/닫기 로직 추가
+        function openVideoModal(videoId) {
+            const modal = document.getElementById('video-modal');
+            const iframe = document.getElementById('video-iframe');
+            
+            // iframe에 src를 할당하여 자동재생
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // 팝업이 떴을 때 배경이 스크롤되지 않도록 고정
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('video-modal');
+            const iframe = document.getElementById('video-iframe');
+            
+            // iframe src를 비워주어 영상 재생을 완전히 멈춤
+            iframe.src = ''; 
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            
+            // 배경 스크롤 고정 해제
+            document.body.style.overflow = ''; 
+        }
+
+        // 모달 바깥(배경 어두운 영역) 클릭 시 모달 닫기
+        document.getElementById('video-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoModal();
+            }
+        });
 
         // 초기 렌더링 실행
         renderMainTabs();
