@@ -13,6 +13,13 @@
                 extend: {
                     animation: {
                         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fadeIn': 'fadeIn 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
                     }
                 }
             }
@@ -45,6 +52,10 @@
         .hide-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-out forwards;
         }
     </style>
 </head>
@@ -100,7 +111,6 @@
                 Local Visual Creator
             </span>
             
-            <!-- 항상 '로컬의 가치를'과 '영상으로 담다'가 두 줄로 나뉘도록 <br>을 고정 적용했습니다. -->
             <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.3] md:leading-[1.1] mb-6 text-white text-shadow-strong">
                 로컬의 가치를<br>
                 영상으로 담다.
@@ -185,7 +195,6 @@
                     </div>
                 </div>
                 <div class="group relative overflow-hidden rounded-3xl min-h-[300px] md:min-h-[400px] bg-black cursor-pointer">
-                    <!-- 유튜브 콘텐츠 이미지 변경 -->
                     <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=800&auto=format&fit=crop&q=60" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-8 flex flex-col justify-end">
                         <h3 class="text-2xl font-bold mb-3 text-white">유튜브 콘텐츠</h3>
@@ -207,7 +216,6 @@
                     </div>
                 </div>
                 <div class="group relative overflow-hidden rounded-3xl min-h-[300px] md:min-h-[400px] bg-black cursor-pointer">
-                    <!-- 뮤직비디오 이미지 복구 및 교체 -->
                     <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=60" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-8 flex flex-col justify-end">
                         <h3 class="text-2xl font-bold mb-3 text-white">뮤직비디오</h3>
@@ -233,11 +241,9 @@
                 <p class="text-lg text-zinc-500 font-medium">메이스튜디오가 만들어낸 시각적 결과물과 신뢰의 파트너들</p>
             </div>
 
-            <!-- 파트너사 목록 섹션 (시각적 분리 적용) -->
+            <!-- 파트너사 목록 섹션 -->
             <div class="mb-12">
-                <!-- 섹션 라벨 추가 -->
                 <p class="text-center text-sm font-black text-zinc-300 tracking-widest uppercase mb-6">Trusted By</p>
-                
                 <div class="flex flex-col items-center">
                     <div class="flex flex-wrap justify-center gap-2 md:gap-3 mb-4">
                         <div class="flex items-center gap-1.5 border px-4 py-2 rounded-full font-bold text-sm transition-colors bg-zinc-50 text-zinc-700 border-zinc-200 hover:bg-zinc-100 shadow-sm">
@@ -277,31 +283,17 @@
                 </div>
             </div>
 
-            <!-- 시각적 구분선 (Divider) -->
             <div class="w-full h-px bg-zinc-200 my-16"></div>
 
             <!-- 포트폴리오 갤러리 섹션 -->
-            <div class="mb-10">
-                <!-- 섹션 라벨 추가 -->
-                <p class="text-center text-sm font-black text-zinc-300 tracking-widest uppercase mb-6">Projects</p>
-
-                <!-- 메인 필터 탭 (방송, 기업/지자체 등) -->
-                <div id="main-filter-tabs" class="flex overflow-x-auto hide-scrollbar justify-start md:justify-center gap-2 md:gap-3 mb-4 pb-2">
-                    <!-- JS로 렌더링됨 -->
-                </div>
-
-                <!-- 서브 필터 탭 (밀톡, 히든챔피언 등) -->
-                <div id="sub-filter-tabs" class="flex flex-wrap justify-center gap-2 hidden">
-                    <!-- JS로 렌더링됨 -->
-                </div>
+            <div class="mb-10 text-center">
+                <p class="text-sm font-black text-zinc-300 tracking-widest uppercase mb-6 text-center">Projects</p>
+                <div id="main-filter-tabs" class="flex overflow-x-auto hide-scrollbar justify-start md:justify-center gap-2 md:gap-3 mb-4 pb-2"></div>
+                <div id="sub-filter-tabs" class="flex flex-wrap justify-center gap-2 hidden"></div>
             </div>
 
-            <!-- 대표 영상 썸네일 그리드 -->
-            <div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <!-- JS로 렌더링됨 -->
-            </div>
+            <div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
             
-            <!-- 더보기 버튼 -->
             <div id="load-more-container" class="text-center mt-12 md:mt-16 hidden">
                 <button onclick="loadMore()" class="inline-flex items-center gap-2 text-black border-2 border-black hover:bg-black hover:text-white px-10 py-3.5 rounded-full font-bold transition-all">
                     <i data-lucide="plus" class="w-4 h-4"></i>
@@ -319,14 +311,11 @@
                 <p class="text-lg text-zinc-500 font-medium">합리적이고 투명한 제작 비용 안내. 상세 금액은 기획에 따라 변동될 수 있습니다.</p>
             </div>
 
-            <!-- 모바일에서 깨지지 않도록 padding 조절(p-6) 및 레이아웃 수정 -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div class="bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-zinc-100">
                     <h3 class="text-xl md:text-2xl font-black mb-2">행사 스케치 영상</h3>
                     <p class="text-sm md:text-base text-zinc-500 mb-8 font-medium">대학 행사, 세미나, 지자체 축제 기록</p>
-                    
                     <div class="space-y-6">
-                        <!-- 모바일에서는 세로(flex-col), 태블릿 이상에서는 가로(sm:flex-row) 배치 -->
                         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end border-b border-zinc-100 pb-4 gap-2">
                             <div>
                                 <p class="font-bold text-base md:text-lg">1Day 촬영 및 편집</p>
@@ -351,7 +340,6 @@
                 <div class="bg-black text-white p-6 md:p-10 rounded-3xl shadow-xl shadow-black/5">
                     <h3 class="text-xl md:text-2xl font-black mb-2">홍보영상 / 유튜브</h3>
                     <p class="text-sm md:text-base text-zinc-400 mb-8 font-medium">브랜드 가치를 높이는 맞춤형 콘텐츠</p>
-                    
                     <div class="space-y-6">
                         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end border-b border-zinc-800 pb-4 gap-2">
                             <div>
@@ -385,7 +373,6 @@
     <!-- 6. Contact Section -->
     <section id="contact" class="py-24 md:py-32 bg-white px-6 relative">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-            
             <div>
                 <h2 class="text-4xl md:text-6xl font-black tracking-tighter mb-8 text-zinc-900">
                     Let's Create <span class="text-zinc-400">Together.</span>
@@ -394,7 +381,6 @@
                     성공적인 영상 제작의 첫 걸음은 좋은 소통에서 시작됩니다. 
                     프로젝트의 목적과 대략적인 예산을 알려주시면, 최적의 솔루션을 제안해 드립니다.
                 </p>
-
                 <div class="space-y-8">
                     <div class="flex items-center gap-4 group cursor-pointer">
                         <div class="w-12 h-12 bg-zinc-100 rounded-full flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
@@ -405,7 +391,6 @@
                             <p class="text-xl font-bold tracking-tight">010-3560-5859</p>
                         </div>
                     </div>
-                    
                     <div class="flex items-center gap-4 group cursor-pointer">
                         <div class="w-12 h-12 bg-zinc-100 rounded-full flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
                             <i data-lucide="mail" class="w-5 h-5"></i>
@@ -415,25 +400,19 @@
                             <p class="text-xl font-bold tracking-tight">jungmei_02@naver.com</p>
                         </div>
                     </div>
-
                     <div class="flex items-center gap-4 group cursor-pointer">
                         <div class="w-12 h-12 bg-zinc-100 rounded-full flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
                             <i data-lucide="instagram" class="w-5 h-5"></i>
                         </div>
                         <div>
                             <p class="text-sm text-zinc-400 font-bold mb-1">Instagram</p>
-                            <a href="https://www.instagram.com/may.studio_official/" target="_blank" rel="noreferrer" class="text-xl font-bold tracking-tight">
-                                @may.studio_official
-                            </a>
+                            <a href="https://www.instagram.com/may.studio_official/" target="_blank" rel="noreferrer" class="text-xl font-bold tracking-tight">@may.studio_official</a>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="bg-zinc-50 p-8 md:p-12 rounded-3xl border border-zinc-200 shadow-sm relative">
                 <h3 class="text-2xl font-bold mb-8">프로젝트 문의하기</h3>
-                
-                <!-- 폼 전송 성공 시 보여줄 메시지 창 -->
                 <div id="form-success-msg" class="hidden absolute inset-0 bg-zinc-50/95 backdrop-blur-sm z-10 rounded-3xl flex flex-col items-center justify-center text-center p-8">
                     <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
                         <i data-lucide="check" class="w-8 h-8"></i>
@@ -442,63 +421,55 @@
                     <p class="text-zinc-500 font-medium">빠른 시일 내에 남겨주신 연락처로 회신해 드리겠습니다. 감사합니다.</p>
                     <button onclick="document.getElementById('form-success-msg').classList.add('hidden')" class="mt-8 px-6 py-2 bg-black text-white rounded-full font-bold text-sm hover:bg-zinc-800 transition-colors">확인</button>
                 </div>
-
-                <!-- 폼 요소 -->
                 <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-6">
                     <input type="hidden" name="form-name" value="contact" />
-                    <p class="hidden">
-                        <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
-                    </p>
-
+                    <p class="hidden"><label>Don’t fill this out: <input name="bot-field" /></label></p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-2">
-                            <label class="text-sm text-zinc-600 font-bold">이름 / 기관(회사)명</label>
-                            <input type="text" name="이름_기관명" required class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 text-zinc-900 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all" placeholder="홍길동 / 밀양시청" />
+                            <label class="text-sm text-zinc-600 font-bold">이름 / 기관명</label>
+                            <input type="text" name="이름_기관명" required class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all" />
                         </div>
                         <div class="space-y-2">
                             <label class="text-sm text-zinc-600 font-bold">연락처</label>
-                            <input type="tel" name="연락처" required class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 text-zinc-900 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all" placeholder="010-0000-0000" />
+                            <input type="tel" name="연락처" required class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all" />
                         </div>
                     </div>
-                    
                     <div class="space-y-2">
                         <label class="text-sm text-zinc-600 font-bold">이메일</label>
-                        <input type="email" name="이메일" required class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 text-zinc-900 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all" placeholder="example@email.com" />
+                        <input type="email" name="이메일" required class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all" />
                     </div>
-
                     <div class="space-y-2">
-                        <label class="text-sm text-zinc-600 font-bold">제작 분야 (선택)</label>
-                        <select name="제작분야" class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 text-zinc-900 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all appearance-none font-medium">
+                        <label class="text-sm text-zinc-600 font-bold">제작 분야</label>
+                        <select name="제작분야" class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all appearance-none">
                             <option value="방송">방송 (프로그램/다큐)</option>
-                            <option value="기업·지자체">기업·지자체 (홍보영상/스케치)</option>
-                            <option value="대학">대학 (홍보/행사/캠프)</option>
-                            <option value="숏폼">숏폼 (유튜브/릴스)</option>
+                            <option value="기업·지자체">기업·지자체</option>
+                            <option value="대학">대학 (홍보/스케치)</option>
+                            <option value="숏폼">숏폼 / 릴스</option>
                             <option value="사진·디자인">사진·디자인</option>
-                            <option value="기타">기타 문의</option>
                         </select>
                     </div>
-
                     <div class="space-y-2">
-                        <label class="text-sm text-zinc-600 font-bold">프로젝트 내용 및 예산</label>
-                        <textarea rows="4" name="문의내용" required class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 text-zinc-900 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all resize-none" placeholder="원하시는 영상의 레퍼런스나 예산 범위 등을 편하게 적어주세요."></textarea>
+                        <label class="text-sm text-zinc-600 font-bold">내용 및 예산</label>
+                        <textarea rows="4" name="문의내용" required class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all resize-none"></textarea>
                     </div>
-
-                    <button type="submit" class="w-full bg-black text-white font-bold text-lg rounded-xl py-4 hover:bg-zinc-800 transition-colors mt-4 shadow-lg shadow-black/10">
-                        문의 보내기
-                    </button>
+                    <button type="submit" class="w-full bg-black text-white font-bold text-lg rounded-xl py-4 hover:bg-zinc-800 transition-colors mt-4">문의 보내기</button>
                 </form>
             </div>
-
         </div>
     </section>
 
-    <!-- 유튜브 비디오 팝업(모달) 영역 추가 -->
-    <div id="video-modal" class="fixed inset-0 z-[100] bg-black/90 hidden flex-col justify-center items-center p-4 md:p-12 backdrop-blur-sm transition-opacity">
-        <button onclick="closeVideoModal()" class="absolute top-4 right-4 md:top-8 md:right-8 text-white/70 hover:text-white transition-colors z-10 p-2">
+    <!-- 미디어 팝업(비디오/이미지 통합) -->
+    <div id="media-modal" class="fixed inset-0 z-[100] bg-black/90 hidden flex-col justify-center items-center p-4 md:p-12 backdrop-blur-sm">
+        <button onclick="closeMediaModal()" class="absolute top-4 right-4 md:top-8 md:right-8 text-white/70 hover:text-white transition-colors z-10 p-2">
             <i data-lucide="x" class="w-8 h-8 md:w-10 md:h-10"></i>
         </button>
-        <div class="relative w-full max-w-5xl aspect-video bg-black rounded-xl md:rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10" onclick="event.stopPropagation()">
+        <!-- 비디오 컨테이너 -->
+        <div id="video-container" class="relative w-full max-w-5xl aspect-video bg-black rounded-xl overflow-hidden hidden" onclick="event.stopPropagation()">
             <iframe id="video-iframe" class="absolute inset-0 w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <!-- 이미지 컨테이너 -->
+        <div id="image-container" class="relative max-w-full max-h-full overflow-auto hidden" onclick="event.stopPropagation()">
+            <img id="modal-img" src="" class="max-w-full h-auto rounded-lg shadow-2xl">
         </div>
     </div>
 
@@ -510,97 +481,51 @@
                 <p class="text-zinc-500 font-medium text-sm">© 2026 May Studio. All rights reserved.</p>
             </div>
             <div class="flex gap-4">
-                <a href="https://www.instagram.com/may.studio_official/" target="_blank" rel="noreferrer" class="w-10 h-10 bg-zinc-100 rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-colors text-zinc-600">
-                    <i data-lucide="instagram" class="w-4 h-4"></i>
-                </a>
-                <a href="mailto:jungmei_02@naver.com" class="w-10 h-10 bg-zinc-100 rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-colors text-zinc-600">
-                    <i data-lucide="mail" class="w-4 h-4"></i>
-                </a>
+                <a href="https://www.instagram.com/may.studio_official/" target="_blank" class="w-10 h-10 bg-zinc-100 rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                <a href="mailto:jungmei_02@naver.com" class="w-10 h-10 bg-zinc-100 rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-colors"><i data-lucide="mail" class="w-4 h-4"></i></a>
             </div>
         </div>
     </footer>
 
-    <!-- 자바스크립트 로직 -->
     <script>
         lucide.createIcons();
 
-        // 넷리파이 폼 AJAX 제출 처리
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const form = e.target;
-            const formData = new FormData(form);
-            
-            fetch('/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(formData).toString()
-            })
-            .then(() => {
-                // 성공 시 메시지 창 띄우고 폼 초기화
-                document.getElementById('form-success-msg').classList.remove('hidden');
-                form.reset();
-            })
-            .catch((error) => {
-                alert('문의 제출 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
-            });
-        });
+        // 팝업 로직
+        function openMediaModal(url, type = 'video') {
+            const modal = document.getElementById('media-modal');
+            const videoCont = document.getElementById('video-container');
+            const imageCont = document.getElementById('image-container');
+            const iframe = document.getElementById('video-iframe');
+            const img = document.getElementById('modal-img');
 
-        // 네비게이션 효과
-        const navbar = document.getElementById('navbar');
-        const navLinks = document.querySelectorAll('.nav-link');
-        const navBtn = document.getElementById('nav-btn');
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            videoCont.classList.add('hidden');
+            imageCont.classList.add('hidden');
+            iframe.src = '';
+            img.src = '';
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('bg-white/90', 'backdrop-blur-lg', 'border-zinc-200', 'shadow-sm', 'text-zinc-900', 'py-4');
-                navbar.classList.remove('bg-transparent', 'border-transparent', 'text-white', 'py-6');
-                mobileMenuBtn.classList.add('text-black');
-                mobileMenuBtn.classList.remove('text-white');
-                
-                navLinks.forEach(link => {
-                    link.classList.add('text-zinc-600', 'hover:text-black');
-                    link.classList.remove('text-white/90', 'hover:text-white');
-                });
-                
-                navBtn.classList.add('bg-black', 'text-white', 'hover:bg-zinc-800');
-                navBtn.classList.remove('bg-white', 'text-black', 'hover:bg-zinc-200');
+            if (type === 'video') {
+                iframe.src = `https://www.youtube.com/embed/${url}?autoplay=1`;
+                videoCont.classList.remove('hidden');
             } else {
-                navbar.classList.remove('bg-white/90', 'backdrop-blur-lg', 'border-zinc-200', 'shadow-sm', 'text-zinc-900', 'py-4');
-                navbar.classList.add('bg-transparent', 'border-transparent', 'text-white', 'py-6');
-                mobileMenuBtn.classList.remove('text-black');
-                mobileMenuBtn.classList.add('text-white');
-                
-                navLinks.forEach(link => {
-                    link.classList.remove('text-zinc-600', 'hover:text-black');
-                    link.classList.add('text-white/90', 'hover:text-white');
-                });
-
-                navBtn.classList.remove('bg-black', 'text-white', 'hover:bg-zinc-800');
-                navBtn.classList.add('bg-white', 'text-black', 'hover:bg-zinc-200');
+                img.src = url;
+                imageCont.classList.remove('hidden');
             }
-        });
 
-        function scrollToSection(id) {
-            document.getElementById('mobile-menu').classList.add('hidden');
-            document.getElementById('mobile-menu').classList.remove('flex');
-            const element = document.getElementById(id);
-            if (element) element.scrollIntoView({ behavior: 'smooth' });
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
         }
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-                menu.classList.add('flex');
-            } else {
-                menu.classList.add('hidden');
-                menu.classList.remove('flex');
-            }
+        function closeMediaModal() {
+            const modal = document.getElementById('media-modal');
+            document.getElementById('video-iframe').src = '';
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
         }
-        document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
 
-        // 유튜브 URL에서 ID 추출 및 썸네일 생성 유틸리티
+        document.getElementById('media-modal').addEventListener('click', closeMediaModal);
+
         function getYoutubeId(url) {
             if(!url || url === "#") return null;
             const regExp = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/;
@@ -608,15 +533,14 @@
             return (match && match[1]) ? match[1] : null;
         }
 
-        function getThumbnail(url) {
-            const id = getYoutubeId(url);
-            // 유튜브 고화질 썸네일 경로 (존재하지 않으면 기본 이미지 반환)
+        function getThumbnail(item) {
+            if (item.url.match(/\.(jpeg|jpg|gif|png)$/)) return item.url;
+            const id = getYoutubeId(item.url);
             return id ? `https://img.youtube.com/vi/${id}/maxresdefault.jpg` : 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80';
         }
 
-        // ======================= 포트폴리오 데이터 =======================
         const portfolioData = [
-            // 방송
+            // 방송 실적
             { title: "경상남도 청년스토리콘테스트 홍보", mainType: "방송", subType: "홍보 스팟", role: "기획, 촬영 및 편집", url: "https://youtu.be/vu-Lk4i9emo?si=3Lv889ceLcdI1Z2f" },
             { title: "MBC경남 밀톡2 1화 군함(1부)", mainType: "방송", subType: "밀톡2", role: "편집", url: "https://youtu.be/sr0FrVedS84" },
             { title: "MBC경남 밀톡2 1화 군함(2부)", mainType: "방송", subType: "밀톡2", role: "편집", url: "https://youtu.be/9BqBnzvcs6g" },
@@ -702,7 +626,7 @@
             { title: "토요장날 야시장", mainType: "기업·지자체", subType: "반송큰시장", role: "편집", url: "https://youtu.be/uM-bR8Zxaaw?si=W8tmurm2IC9R2UlT" },
             { title: "경남글로벌게임센터 PlayX4", mainType: "기업·지자체", subType: "경남글로벌게임센터", role: "편집", url: "https://youtu.be/YmLndNtXgQI?si=h1m0coD8BqbO4fVo" },
 
-            // 대학
+            // 대학 실적
             { title: "마산대학교 입학홍보", mainType: "대학", subType: "마산대학교", role: "기획, 촬영 및 편집", url: "https://youtu.be/g1NlILp0hvE?si=0VMwfsiARFIWVwb3" },
             { title: "경남대학교 취업 특강 - 흥버튼", mainType: "대학", subType: "경남대학교", role: "기획, 촬영 및 편집", url: "https://youtu.be/VfXAMrq4OBg?si=6gr3s7oEbXo1MCOU" },
             { title: "기계공학부 취업 후기", mainType: "대학", subType: "경남대학교", role: "기획, 촬영 및 편집", url: "https://youtu.be/NAu9GDlKm0I?si=BzljbE89CNVzcPuu" },
@@ -716,19 +640,29 @@
             { title: "자작자동차 동아리 소개", mainType: "대학", subType: "경남대학교", role: "기획, 촬영 및 편집", url: "https://youtu.be/kRhOM42f4x0?si=ixYeNGS2V0OmhVz5" },
             { title: "필리핀 어학연수 프로그램", mainType: "대학", subType: "경남대학교", role: "기획, 촬영 및 편집", url: "https://youtu.be/Gr3TlT5i-Q4?si=j2rQqy19iBb9FsZo" },
 
-            // 숏폼
+            // 숏폼 실적
             { title: "밀양시 얼음골 홍보", mainType: "숏폼", subType: "밀양시", role: "편집", url: "https://www.youtube.com/shorts/vZ_gLGHh7Kk" },
             { title: "밀양시 장미공원 홍보", mainType: "숏폼", subType: "밀양시", role: "편집", url: "https://www.youtube.com/shorts/pZ7Jf7qBRV0" },
-            { title: "밀양시 고향사랑기부제 홍보", mainType: "숏폼", subType: "밀양시", role: "편집", url: "https://www.youtube.com/shorts/O0ShXcLF14w" }
+            { title: "밀양시 고향사랑기부제 홍보", mainType: "숏폼", subType: "밀양시", role: "편집", url: "https://www.youtube.com/shorts/O0ShXcLF14w" },
+
+            // 사진·디자인 실적 (수정 반영)
+            { title: "밀톡2 포스터 촬영 01", mainType: "사진·디자인", subType: "포스터 촬영", role: "촬영", url: "photo_miltalk_01.jpeg" },
+            { title: "밀톡2 포스터 촬영 02", mainType: "사진·디자인", subType: "포스터 촬영", role: "촬영", url: "photo_miltalk_02.jpeg" },
+            { title: "밀톡2 포스터 촬영 03", mainType: "사진·디자인", subType: "포스터 촬영", role: "촬영", url: "photo_miltalk_03.jpeg" },
+            { title: "창업트렌드 특강 포스터", mainType: "사진·디자인", subType: "포스터 디자인", role: "디자인", url: "design_gimhae_cafe.png" },
+            { title: "AI-Native 개발 워크숍 상세페이지", mainType: "사진·디자인", subType: "상세페이지", role: "디자인", url: "design_founder_ai.jpeg" },
+            { title: "반도체부트캠프 현수막 01", mainType: "사진·디자인", subType: "현수막 디자인", role: "디자인", url: "design_bootcamp_01.jpeg" },
+            { title: "반도체부트캠프 현수막 02", mainType: "사진·디자인", subType: "현수막 디자인", role: "디자인", url: "design_bootcamp_02.jpeg" },
+            { title: "반도체부트캠프 현수막 03", mainType: "사진·디자인", subType: "현수막 디자인", role: "디자인", url: "design_bootcamp_03.jpeg" },
+            { title: "반도체부트캠프 현수막 04", mainType: "사진·디자인", subType: "현수막 디자인", role: "디자인", url: "design_bootcamp_04.png" }
         ];
 
-        // ======================= 카테고리 로직 =======================
         const mainCategories = ['All', '방송', '기업·지자체', '대학', '숏폼', '사진·디자인'];
         const subCategoryMap = {
             '방송': ['All', '밀톡2', '히든챔피언', '오픈토크', '엠뉴가 간다', 'K-방산', '홍보 스팟', '뉴스 리포트', '특집·기타'],
             '기업·지자체': ['All', '경상남도', '밀양시', '함안군', '양산남부시장', '반송큰시장', '경남글로벌게임센터'],
             '대학': ['All', '경남대학교', '마산대학교'],
-            '숏폼': ['All', '밀양시']
+            '사진·디자인': ['All', '포스터 촬영', '포스터 디자인', '상세페이지', '현수막 디자인']
         };
 
         let activeMainCategory = 'All';
@@ -738,22 +672,11 @@
         function renderMainTabs() {
             const tabsContainer = document.getElementById('main-filter-tabs');
             tabsContainer.innerHTML = '';
-            
             mainCategories.forEach(cat => {
                 const btn = document.createElement('button');
                 btn.innerText = cat;
-                btn.className = activeMainCategory === cat
-                    ? "px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 bg-black text-white shadow-md whitespace-nowrap"
-                    : "px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 bg-zinc-100 text-zinc-600 hover:bg-zinc-200 hover:text-black whitespace-nowrap";
-                
-                btn.onclick = () => {
-                    activeMainCategory = cat;
-                    activeSubCategory = 'All'; // 메인 탭 변경 시 서브 탭은 항상 All로 초기화
-                    visibleCount = 6;
-                    renderMainTabs();
-                    renderSubTabs();
-                    renderPortfolio();
-                };
+                btn.className = activeMainCategory === cat ? "px-5 py-2.5 rounded-full text-sm font-bold bg-black text-white shadow-md whitespace-nowrap" : "px-5 py-2.5 rounded-full text-sm font-bold bg-zinc-100 text-zinc-600 hover:bg-zinc-200 whitespace-nowrap";
+                btn.onclick = () => { activeMainCategory = cat; activeSubCategory = 'All'; visibleCount = 6; renderMainTabs(); renderSubTabs(); renderPortfolio(); };
                 tabsContainer.appendChild(btn);
             });
         }
@@ -761,29 +684,14 @@
         function renderSubTabs() {
             const subContainer = document.getElementById('sub-filter-tabs');
             subContainer.innerHTML = '';
-            
             const subCats = subCategoryMap[activeMainCategory];
-            
-            if (activeMainCategory === 'All' || !subCats || subCats.length === 0) {
-                subContainer.classList.add('hidden');
-                return;
-            }
-
+            if (activeMainCategory === 'All' || !subCats) { subContainer.classList.add('hidden'); return; }
             subContainer.classList.remove('hidden');
-            
             subCats.forEach(sub => {
                 const btn = document.createElement('button');
                 btn.innerText = sub;
-                btn.className = activeSubCategory === sub
-                    ? "px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-300 bg-zinc-800 text-white"
-                    : "px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-300 bg-white border border-zinc-200 text-zinc-600 hover:border-zinc-400 hover:text-black";
-                
-                btn.onclick = () => {
-                    activeSubCategory = sub;
-                    visibleCount = 6;
-                    renderSubTabs();
-                    renderPortfolio();
-                };
+                btn.className = activeSubCategory === sub ? "px-4 py-1.5 rounded-full text-xs font-bold bg-zinc-800 text-white" : "px-4 py-1.5 rounded-full text-xs font-bold bg-white border border-zinc-200 text-zinc-600";
+                btn.onclick = () => { activeSubCategory = sub; visibleCount = 6; renderSubTabs(); renderPortfolio(); };
                 subContainer.appendChild(btn);
             });
         }
@@ -792,114 +700,127 @@
             const grid = document.getElementById('portfolio-grid');
             const loadMoreContainer = document.getElementById('load-more-container');
             const loadMoreText = document.getElementById('load-more-text');
-            
             grid.innerHTML = '';
             
-            // 필터링 적용
             let filteredItems = portfolioData;
-            
             if (activeMainCategory !== 'All') {
                 filteredItems = filteredItems.filter(item => item.mainType === activeMainCategory);
-                if (activeSubCategory !== 'All') {
-                    filteredItems = filteredItems.filter(item => item.subType === activeSubCategory);
-                }
+                if (activeSubCategory !== 'All') filteredItems = filteredItems.filter(item => item.subType === activeSubCategory);
             }
 
-            // 개수 제한
             const itemsToShow = filteredItems.slice(0, visibleCount);
-
             if(filteredItems.length === 0) {
-                grid.innerHTML = '<div class="col-span-full text-center py-12 text-zinc-400 font-medium">등록된 포트폴리오가 없습니다.</div>';
+                grid.innerHTML = '<div class="col-span-full text-center py-12 text-zinc-400">등록된 작업물이 없습니다.</div>';
             } else {
                 itemsToShow.forEach(item => {
                     const card = document.createElement('div');
-                    card.className = "group block cursor-pointer flex flex-col h-full";
+                    card.className = "group block cursor-pointer flex flex-col h-full animate-fadeIn";
                     
                     const videoId = getYoutubeId(item.url);
-                    const thumbnail = getThumbnail(item.url);
+                    const isImage = item.url.match(/\.(jpeg|jpg|gif|png)$/) != null;
+                    const thumb = getThumbnail(item);
                     
-                    // 유튜브 ID가 존재하면 팝업을 열고, 아니면 기존처럼 링크로 이동
-                    if (videoId) {
-                        card.onclick = () => openVideoModal(videoId);
-                    } else if (item.url !== "#") {
-                        card.onclick = () => window.open(item.url, '_blank');
-                    }
+                    if (videoId) card.onclick = () => openMediaModal(videoId, 'video');
+                    else if (isImage) card.onclick = () => openMediaModal(item.url, 'image');
                     
                     card.innerHTML = `
-                        <div class="relative aspect-video bg-zinc-100 rounded-2xl overflow-hidden mb-4 border border-zinc-200 shadow-sm group-hover:shadow-xl transition-all duration-300">
-                            <!-- 추출한 썸네일 이미지 표시 -->
-                            <img src="${thumbnail}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80'">
-                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-black/40 transition-opacity duration-300">
-                                <div class="bg-white/95 backdrop-blur-md p-3 rounded-full shadow-lg scale-90 group-hover:scale-100 transition-transform duration-300 flex items-center justify-center">
-                                    <i data-lucide="play" class="w-6 h-6 fill-black ml-1 text-black"></i>
+                        <div class="relative aspect-video bg-zinc-100 rounded-2xl overflow-hidden mb-4 border border-zinc-200 group-hover:shadow-xl transition-all duration-300">
+                            <img src="${thumb}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80'">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-black/40 transition-opacity">
+                                <div class="bg-white/95 p-3 rounded-full shadow-lg scale-90 group-hover:scale-100 transition-transform">
+                                    <i data-lucide="${isImage ? 'zoom-in' : 'play'}" class="w-6 h-6 ${isImage ? 'text-black' : 'fill-black text-black'}"></i>
                                 </div>
                             </div>
                         </div>
                         <h3 class="text-lg font-bold mb-2 group-hover:text-zinc-600 transition-colors line-clamp-2">${item.title}</h3>
                         <div class="mt-auto flex items-center justify-between pt-2">
-                            <p class="text-zinc-500 font-medium text-xs">${item.mainType} <span class="mx-1 text-zinc-300">|</span> ${item.subType}</p>
-                            <span class="text-[10px] font-bold bg-zinc-100 text-zinc-600 px-2 py-1 rounded border border-zinc-200">${item.role}</span>
+                            <p class="text-zinc-500 font-medium text-xs">${item.mainType} | ${item.subType}</p>
+                            <span class="text-[10px] font-bold bg-zinc-100 text-zinc-600 px-2 py-1 rounded">${item.role}</span>
                         </div>
                     `;
                     grid.appendChild(card);
                 });
             }
-
             lucide.createIcons();
-
-            // 더보기 버튼 표시 여부
-            if (filteredItems.length > visibleCount) {
-                loadMoreContainer.classList.remove('hidden');
-                loadMoreText.innerText = `더보기 (${visibleCount} / ${filteredItems.length})`;
-            } else {
-                loadMoreContainer.classList.add('hidden');
-            }
+            if (filteredItems.length > visibleCount) { loadMoreContainer.classList.remove('hidden'); loadMoreText.innerText = `더보기 (${visibleCount} / ${filteredItems.length})`; }
+            else { loadMoreContainer.classList.add('hidden'); }
         }
 
-        function loadMore() {
-            visibleCount += 6;
-            renderPortfolio();
-        }
+        function loadMore() { visibleCount += 6; renderPortfolio(); }
 
-        // 모달 열기/닫기 로직 추가
-        function openVideoModal(videoId) {
-            const modal = document.getElementById('video-modal');
-            const iframe = document.getElementById('video-iframe');
-            
-            // iframe에 src를 할당하여 자동재생
-            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            
-            // 팝업이 떴을 때 배경이 스크롤되지 않도록 고정
-            document.body.style.overflow = 'hidden'; 
-        }
-
-        function closeVideoModal() {
-            const modal = document.getElementById('video-modal');
-            const iframe = document.getElementById('video-iframe');
-            
-            // iframe src를 비워주어 영상 재생을 완전히 멈춤
-            iframe.src = ''; 
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            
-            // 배경 스크롤 고정 해제
-            document.body.style.overflow = ''; 
-        }
-
-        // 모달 바깥(배경 어두운 영역) 클릭 시 모달 닫기
-        document.getElementById('video-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeVideoModal();
-            }
-        });
-
-        // 초기 렌더링 실행
+        // 초기화
         renderMainTabs();
         renderSubTabs();
         renderPortfolio();
 
+        // 팝업 로직 통합
+        function openMediaModal(url, type = 'video') {
+            const modal = document.getElementById('media-modal');
+            const videoCont = document.getElementById('video-container');
+            const imageCont = document.getElementById('image-container');
+            const iframe = document.getElementById('video-iframe');
+            const img = document.getElementById('modal-img');
+
+            videoCont.classList.add('hidden');
+            imageCont.classList.add('hidden');
+            iframe.src = '';
+            img.src = '';
+
+            if (type === 'video') {
+                iframe.src = `https://www.youtube.com/embed/${url}?autoplay=1`;
+                videoCont.classList.remove('hidden');
+            } else {
+                img.src = url;
+                imageCont.classList.remove('hidden');
+            }
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMediaModal() {
+            const modal = document.getElementById('media-modal');
+            document.getElementById('video-iframe').src = '';
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('media-modal').addEventListener('click', closeMediaModal);
+
+        // 네비게이션 및 부드러운 스크롤
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/90', 'backdrop-blur-lg', 'border-zinc-200', 'shadow-sm', 'text-zinc-900', 'py-4');
+                navbar.classList.remove('bg-transparent', 'border-transparent', 'text-white', 'py-6');
+            } else {
+                navbar.classList.remove('bg-white/90', 'backdrop-blur-lg', 'border-zinc-200', 'shadow-sm', 'text-zinc-900', 'py-4');
+                navbar.classList.add('bg-transparent', 'border-transparent', 'text-white', 'py-6');
+            }
+        });
+
+        function scrollToSection(id) {
+            document.getElementById('mobile-menu').classList.add('hidden');
+            const element = document.getElementById(id);
+            if (element) element.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        }
+
+        // 문의 폼 처리
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(formData).toString() })
+            .then(() => { document.getElementById('form-success-msg').classList.remove('hidden'); form.reset(); });
+        });
     </script>
 </body>
 </html>
