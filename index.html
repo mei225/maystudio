@@ -57,6 +57,22 @@
         .animate-fadeIn {
             animation: fadeIn 0.5s ease-out forwards;
         }
+
+        /* 팝업 내부 스크롤바 스타일 */
+        #image-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        #image-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        #image-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+        #image-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
     </style>
 </head>
 <body class="bg-white text-zinc-900 selection:bg-zinc-200 selection:text-black">
@@ -459,16 +475,16 @@
 
     <!-- 미디어 팝업(비디오/이미지 통합) -->
     <div id="media-modal" class="fixed inset-0 z-[100] bg-black/90 hidden flex-col justify-center items-center p-4 md:p-12 backdrop-blur-sm">
-        <button onclick="closeMediaModal()" class="absolute top-4 right-4 md:top-8 md:right-8 text-white/70 hover:text-white transition-colors z-10 p-2">
+        <button onclick="closeMediaModal()" class="absolute top-4 right-4 md:top-8 md:right-8 text-white/70 hover:text-white transition-colors z-[110] p-2">
             <i data-lucide="x" class="w-8 h-8 md:w-10 md:h-10"></i>
         </button>
         <!-- 비디오 컨테이너 -->
         <div id="video-container" class="relative w-full max-w-5xl aspect-video bg-black rounded-xl overflow-hidden hidden" onclick="event.stopPropagation()">
             <iframe id="video-iframe" class="absolute inset-0 w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <!-- 이미지 컨테이너 (크기 조절 및 반응형 보정) -->
-        <div id="image-container" class="relative max-w-3xl w-full max-h-[85vh] flex justify-center items-center hidden" onclick="event.stopPropagation()">
-            <img id="modal-img" src="" class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl ring-1 ring-white/20">
+        <!-- 이미지 컨테이너 (세로 스크롤 가능하도록 수정) -->
+        <div id="image-container" class="relative max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl hidden" onclick="event.stopPropagation()">
+            <img id="modal-img" src="" class="w-full h-auto object-contain rounded-lg">
         </div>
     </div>
 
@@ -523,6 +539,8 @@
             } else {
                 img.src = url;
                 imageCont.classList.remove('hidden');
+                // 이미지 팝업 시 스크롤 위치 초기화
+                imageCont.scrollTop = 0;
             }
 
             modal.classList.remove('hidden');
@@ -647,7 +665,7 @@
             { title: "밀양시 장미공원 홍보", mainType: "숏폼", subType: "밀양시", role: "편집", url: "https://www.youtube.com/shorts/pZ7Jf7qBRV0" },
             { title: "밀양시 고향사랑기부제 홍보", mainType: "숏폼", subType: "밀양시", role: "편집", url: "https://www.youtube.com/shorts/O0ShXcLF14w" },
 
-            // 사진·디자인 실적 (jpeg 및 png 확장자 반영)
+            // 사진·디자인 실적
             { title: "밀톡2 포스터 촬영 01", mainType: "사진·디자인", subType: "포스터 촬영", role: "촬영", url: "photo_miltalk_01.jpeg" },
             { title: "밀톡2 포스터 촬영 02", mainType: "사진·디자인", subType: "포스터 촬영", role: "촬영", url: "photo_miltalk_02.jpeg" },
             { title: "밀톡2 포스터 촬영 03", mainType: "사진·디자인", subType: "포스터 촬영", role: "촬영", url: "photo_miltalk_03.jpeg" },
@@ -755,7 +773,7 @@
         renderSubTabs();
         renderPortfolio();
 
-        // 팝업 로직 통합 (이미지 크기 최적화 반영)
+        // 팝업 로직 통합 (이미지 스크롤 최적화 반영)
         function openMediaModal(url, type = 'video') {
             const modal = document.getElementById('media-modal');
             const videoCont = document.getElementById('video-container');
@@ -774,6 +792,8 @@
             } else {
                 img.src = url;
                 imageCont.classList.remove('hidden');
+                // 이미지 팝업 시 항상 최상단부터 보이도록 설정
+                imageCont.scrollTop = 0;
             }
 
             modal.classList.remove('hidden');
