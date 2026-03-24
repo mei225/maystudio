@@ -186,7 +186,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Service Items -->
                 <div class="group relative overflow-hidden rounded-3xl min-h-[300px] md:min-h-[400px] bg-black cursor-pointer">
                     <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800&auto=format&fit=crop&q=60" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-8 flex flex-col justify-end">
@@ -365,7 +364,7 @@
             
             <div class="mt-8 text-center text-zinc-500 text-sm flex flex-col md:flex-row items-center justify-center gap-2 font-medium">
                 <i data-lucide="check-circle-2" class="w-4 h-4 hidden md:block"></i>
-                <span>모든 견적은 촬영 장비, 투입 인력, 런타임 및 CG 작업량에 따라<br class="block md:hidden"> 세부 협의 후 최종 결정됩니다.</span>
+                <span>모든 견적은 촬영 장비, 투입 인력, 런타임 및 CG 작업량에 따라 세부 협의 후 최종 결정됩니다.</span>
             </div>
         </div>
     </section>
@@ -440,7 +439,7 @@
                     </div>
                     <div class="space-y-2">
                         <label class="text-sm text-zinc-600 font-bold">제작 분야</label>
-                        <select name="제작분야" class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all appearance-none">
+                        <select name="제작분야" class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all appearance-none font-medium font-sans">
                             <option value="방송">방송 (프로그램/다큐)</option>
                             <option value="기업·지자체">기업·지자체</option>
                             <option value="대학">대학 (홍보/스케치)</option>
@@ -450,7 +449,7 @@
                     </div>
                     <div class="space-y-2">
                         <label class="text-sm text-zinc-600 font-bold">내용 및 예산</label>
-                        <textarea rows="4" name="문의내용" required class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all resize-none"></textarea>
+                        <textarea rows="4" name="문의내용" required class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all resize-none font-sans"></textarea>
                     </div>
                     <button type="submit" class="w-full bg-black text-white font-bold text-lg rounded-xl py-4 hover:bg-zinc-800 transition-colors mt-4">문의 보내기</button>
                 </form>
@@ -467,9 +466,9 @@
         <div id="video-container" class="relative w-full max-w-5xl aspect-video bg-black rounded-xl overflow-hidden hidden" onclick="event.stopPropagation()">
             <iframe id="video-iframe" class="absolute inset-0 w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <!-- 이미지 컨테이너 -->
-        <div id="image-container" class="relative max-w-full max-h-full overflow-auto hidden" onclick="event.stopPropagation()">
-            <img id="modal-img" src="" class="max-w-full h-auto rounded-lg shadow-2xl">
+        <!-- 이미지 컨테이너 (크기 조절 및 반응형 보정) -->
+        <div id="image-container" class="relative max-w-3xl w-full max-h-[85vh] flex justify-center items-center hidden" onclick="event.stopPropagation()">
+            <img id="modal-img" src="" class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl ring-1 ring-white/20">
         </div>
     </div>
 
@@ -490,7 +489,22 @@
     <script>
         lucide.createIcons();
 
-        // 팝업 로직
+        // 유튜브 URL에서 ID 추출
+        function getYoutubeId(url) {
+            if(!url || url === "#") return null;
+            const regExp = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/;
+            const match = url.match(regExp);
+            return (match && match[1]) ? match[1] : null;
+        }
+
+        // 썸네일 경로 결정
+        function getThumbnail(item) {
+            if (item.url.match(/\.(jpeg|jpg|gif|png)$/)) return item.url;
+            const id = getYoutubeId(item.url);
+            return id ? `https://img.youtube.com/vi/${id}/maxresdefault.jpg` : 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80';
+        }
+
+        // 미디어 팝업 로직
         function openMediaModal(url, type = 'video') {
             const modal = document.getElementById('media-modal');
             const videoCont = document.getElementById('video-container');
@@ -526,19 +540,7 @@
 
         document.getElementById('media-modal').addEventListener('click', closeMediaModal);
 
-        function getYoutubeId(url) {
-            if(!url || url === "#") return null;
-            const regExp = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/;
-            const match = url.match(regExp);
-            return (match && match[1]) ? match[1] : null;
-        }
-
-        function getThumbnail(item) {
-            if (item.url.match(/\.(jpeg|jpg|gif|png)$/)) return item.url;
-            const id = getYoutubeId(item.url);
-            return id ? `https://img.youtube.com/vi/${id}/maxresdefault.jpg` : 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80';
-        }
-
+        // 포트폴리오 데이터
         const portfolioData = [
             // 방송 실적
             { title: "경상남도 청년스토리콘테스트 홍보", mainType: "방송", subType: "홍보 스팟", role: "기획, 촬영 및 편집", url: "https://youtu.be/vu-Lk4i9emo?si=3Lv889ceLcdI1Z2f" },
@@ -582,7 +584,7 @@
             { title: "MBC경남 뉴스 리포트 1", mainType: "방송", subType: "뉴스 리포트", role: "촬영 및 편집", url: "https://youtu.be/c2AMwa35Px0" },
             { title: "MBC경남 뉴스 리포트 2", mainType: "방송", subType: "뉴스 리포트", role: "촬영 및 편집", url: "https://youtu.be/Gk0lhFbuIvY" },
 
-            // 기업·지자체
+            // 기업·지자체 실적
             { title: "청년스토리콘테스트 1", mainType: "기업·지자체", subType: "경상남도", role: "기획, 촬영 및 편집", url: "https://youtu.be/Xb8nG7cGQs8" },
             { title: "청년스토리콘테스트 2", mainType: "기업·지자체", subType: "경상남도", role: "기획, 촬영 및 편집", url: "https://youtu.be/-s_SbIokxLM" },
             { title: "청년스토리콘테스트 3", mainType: "기업·지자체", subType: "경상남도", role: "기획, 촬영 및 편집", url: "https://youtu.be/XSfAIVGUbu4" },
@@ -645,7 +647,7 @@
             { title: "밀양시 장미공원 홍보", mainType: "숏폼", subType: "밀양시", role: "편집", url: "https://www.youtube.com/shorts/pZ7Jf7qBRV0" },
             { title: "밀양시 고향사랑기부제 홍보", mainType: "숏폼", subType: "밀양시", role: "편집", url: "https://www.youtube.com/shorts/O0ShXcLF14w" },
 
-            // 사진·디자인 실적 (수정 반영)
+            // 사진·디자인 실적 (jpeg 및 png 확장자 반영)
             { title: "밀톡2 포스터 촬영 01", mainType: "사진·디자인", subType: "포스터 촬영", role: "촬영", url: "photo_miltalk_01.jpeg" },
             { title: "밀톡2 포스터 촬영 02", mainType: "사진·디자인", subType: "포스터 촬영", role: "촬영", url: "photo_miltalk_02.jpeg" },
             { title: "밀톡2 포스터 촬영 03", mainType: "사진·디자인", subType: "포스터 촬영", role: "촬영", url: "photo_miltalk_03.jpeg" },
@@ -753,7 +755,7 @@
         renderSubTabs();
         renderPortfolio();
 
-        // 팝업 로직 통합
+        // 팝업 로직 통합 (이미지 크기 최적화 반영)
         function openMediaModal(url, type = 'video') {
             const modal = document.getElementById('media-modal');
             const videoCont = document.getElementById('video-container');
