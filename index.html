@@ -482,7 +482,7 @@
         <div id="video-container" class="relative w-full max-w-5xl aspect-video bg-black rounded-xl overflow-hidden hidden" onclick="event.stopPropagation()">
             <iframe id="video-iframe" class="absolute inset-0 w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <!-- 이미지 컨테이너 (세로 스크롤 가능하도록 수정) -->
+        <!-- 이미지 컨테이너 -->
         <div id="image-container" class="relative max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl hidden" onclick="event.stopPropagation()">
             <img id="modal-img" src="" class="w-full h-auto object-contain rounded-lg">
         </div>
@@ -539,7 +539,6 @@
             } else {
                 img.src = url;
                 imageCont.classList.remove('hidden');
-                // 이미지 팝업 시 스크롤 위치 초기화
                 imageCont.scrollTop = 0;
             }
 
@@ -561,6 +560,13 @@
         // 포트폴리오 데이터
         const portfolioData = [
             // 방송 실적
+            { title: "2026 진해군항제 - 전통의장대 리허설", mainType: "방송", subType: "엠뉴", role: "촬영 및 종합 편집", url: "https://youtu.be/vO1boceMT7I" },
+            { title: "2026 진해군항제 - 육군·공군 리허설", mainType: "방송", subType: "엠뉴", role: "촬영 및 종합 편집", url: "https://youtu.be/FP3_m2LULk4" },
+            { title: "2026 진해군항제 - 해군·해병대 리허설", mainType: "방송", subType: "엠뉴", role: "촬영 및 종합 편집", url: "https://youtu.be/qIZxEKu-jSo" },
+            { title: "2026 진해군항제 - 몽골·미8군 리허설", mainType: "방송", subType: "엠뉴", role: "촬영 및 종합 편집", url: "https://youtu.be/lrKpTBllvKQ" },
+            { title: "2026 진해군항제 - 세븐틴 호시(육군군악대대)", mainType: "방송", subType: "엠뉴", role: "촬영 및 종합 편집", url: "https://youtu.be/CIfLL8AgzgM" },
+            { title: "2026 진해군항제 - 이충무공 승전행차", mainType: "방송", subType: "엠뉴", role: "촬영 및 종합 편집", url: "https://youtu.be/2XgaMXQ1dNo" },
+            { title: "2026 진해군항제 - 이충무공 추모대제", mainType: "방송", subType: "엠뉴", role: "촬영 및 종합 편집", url: "https://youtu.be/BBeOFD1UWYc" },
             { title: "경상남도 청년스토리콘테스트 홍보", mainType: "방송", subType: "홍보 스팟", role: "기획, 촬영 및 편집", url: "https://youtu.be/vu-Lk4i9emo?si=3Lv889ceLcdI1Z2f" },
             { title: "MBC경남 밀톡2 1화 군함(1부)", mainType: "방송", subType: "밀톡2", role: "편집", url: "https://youtu.be/sr0FrVedS84" },
             { title: "MBC경남 밀톡2 1화 군함(2부)", mainType: "방송", subType: "밀톡2", role: "편집", url: "https://youtu.be/9BqBnzvcs6g" },
@@ -679,7 +685,7 @@
 
         const mainCategories = ['All', '방송', '기업·지자체', '대학', '숏폼', '사진·디자인'];
         const subCategoryMap = {
-            '방송': ['All', '밀톡2', '히든챔피언', '오픈토크', '엠뉴가 간다', 'K-방산', '홍보 스팟', '뉴스 리포트', '특집·기타'],
+            '방송': ['All', '엠뉴', '밀톡2', '히든챔피언', '오픈토크', '엠뉴가 간다', 'K-방산', '홍보 스팟', '뉴스 리포트', '특집·기타'],
             '기업·지자체': ['All', '경상남도', '밀양시', '함안군', '양산남부시장', '반송큰시장', '경남글로벌게임센터'],
             '대학': ['All', '경남대학교', '마산대학교'],
             '사진·디자인': ['All', '포스터 촬영', '포스터 디자인', '상세페이지', '현수막 디자인']
@@ -792,7 +798,6 @@
             } else {
                 img.src = url;
                 imageCont.classList.remove('hidden');
-                // 이미지 팝업 시 항상 최상단부터 보이도록 설정
                 imageCont.scrollTop = 0;
             }
 
