@@ -3,7 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메이스튜디오 (maystudio) | Local Visual Creator</title>
+    
+    <!-- 1. 구글 서치 콘솔 인증 태그 -->
+    <meta name="google-site-verification" content="1rJWE4n7E1v0nwQiRlMysMdQk1Ks6n4RgdYDG0e0gwc" />
+    
+    <!-- 2. 네이버 서치어드바이저용 (필요 시 나중에 content 값만 수정하세요) -->
+    <meta name="naver-site-verification" content="" />
+
+    <!-- 3. 검색 엔진 최적화 (SEO) -->
+    <title>메이스튜디오 (maystudio) | 경남 로컬 비주얼 크리에이터</title>
+    <meta name="description" content="경상남도를 거점으로 활동하는 영상 제작 스튜디오. 기업 홍보, 지자체 정책 영상, 유튜브 콘텐츠, 포스터 디자인까지 로컬의 가치를 감각적으로 담아냅니다.">
+    <meta name="keywords" content="메이스튜디오, 영상제작, 경남영상제작, 창원영상제작, 밀양영상제작, 지자체홍보영상, 유튜브편집, 포스터디자인, 정윤희">
+    <link rel="canonical" href="https://maystudio.kr">
+
+    <!-- 4. 오픈 그래프 (SNS 공유 시 미리보기) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="메이스튜디오 (maystudio)">
+    <meta property="og:description" content="로컬의 가치를 영상으로 담다. 경남 기반 비주얼 크리에이티브 파트너.">
+    <meta property="og:image" content="https://maystudio2026.netlify.app/photo_miltalk_01.jpeg"> <!-- 대표 이미지 경로 -->
+    <meta property="og:url" content="https://maystudio.kr">
     
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -337,7 +355,7 @@
                                 <p class="text-xs md:text-sm text-zinc-400">당일 행사 스케치 (기획/촬영/편집 포함)</p>
                             </div>
                             <div class="sm:text-right">
-                                <p class="text-xl md:text-2xl font-black">60만<span class="text-sm md:text-base font-medium text-zinc-500">원 부터</span></p>
+                                <p class="text-xl md:text-2xl font-black">80만<span class="text-sm md:text-base font-medium text-zinc-500">원 부터</span></p>
                             </div>
                         </div>
                         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end border-b border-zinc-100 pb-4 gap-2">
@@ -346,7 +364,7 @@
                                 <p class="text-xs md:text-sm text-zinc-400">장기 캠프, 페스티벌 심층 기록</p>
                             </div>
                             <div class="sm:text-right">
-                                <p class="text-xl md:text-2xl font-black">120만<span class="text-sm md:text-base font-medium text-zinc-500">원 부터</span></p>
+                                <p class="text-xl md:text-2xl font-black">150만<span class="text-sm md:text-base font-medium text-zinc-500">원 부터</span></p>
                             </div>
                         </div>
                     </div>
@@ -371,7 +389,7 @@
                                 <p class="text-xs md:text-sm text-zinc-400">마스터 홍보영상, 다큐멘터리, CF</p>
                             </div>
                             <div class="sm:text-right">
-                                <p class="text-xl md:text-2xl font-black">200만<span class="text-sm md:text-base font-medium text-zinc-500">원 부터</span></p>
+                                <p class="text-xl md:text-2xl font-black">300만<span class="text-sm md:text-base font-medium text-zinc-500">원 부터</span></p>
                             </div>
                         </div>
                     </div>
@@ -482,7 +500,7 @@
         <div id="video-container" class="relative w-full max-w-5xl aspect-video bg-black rounded-xl overflow-hidden hidden" onclick="event.stopPropagation()">
             <iframe id="video-iframe" class="absolute inset-0 w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <!-- 이미지 컨테이너 -->
+        <!-- 이미지 컨테이너 (스크롤 가능) -->
         <div id="image-container" class="relative max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl hidden" onclick="event.stopPropagation()">
             <img id="modal-img" src="" class="w-full h-auto object-contain rounded-lg">
         </div>
@@ -676,7 +694,7 @@
             { title: "밀톡2 포스터 촬영 02", mainType: "사진·디자인", subType: "포스터 촬영", role: "촬영", url: "photo_miltalk_02.jpeg" },
             { title: "밀톡2 포스터 촬영 03", mainType: "사진·디자인", subType: "포스터 촬영", role: "촬영", url: "photo_miltalk_03.jpeg" },
             { title: "창업트렌드 특강 포스터", mainType: "사진·디자인", subType: "포스터 디자인", role: "디자인", url: "design_gimhae_cafe.png" },
-            { title: "AI-Native 개발 워크숍 상세페이지", mainType: "사진·디자인", subType: "상세페이지", role: "디자인", url: "design_founder_ai.jpg" },
+            { title: "AI-Native 개발 워크숍 상세페이지", mainType: "사진·디자인", subType: "상세페이지", role: "디자인", url: "design_founder_ai.jpeg" },
             { title: "반도체부트캠프 현수막 01", mainType: "사진·디자인", subType: "현수막 디자인", role: "디자인", url: "design_bootcamp_01.jpeg" },
             { title: "반도체부트캠프 현수막 02", mainType: "사진·디자인", subType: "현수막 디자인", role: "디자인", url: "design_bootcamp_02.jpeg" },
             { title: "반도체부트캠프 현수막 03", mainType: "사진·디자인", subType: "현수막 디자인", role: "디자인", url: "design_bootcamp_03.jpeg" },
@@ -778,43 +796,6 @@
         renderMainTabs();
         renderSubTabs();
         renderPortfolio();
-
-        // 팝업 로직 통합 (이미지 스크롤 최적화 반영)
-        function openMediaModal(url, type = 'video') {
-            const modal = document.getElementById('media-modal');
-            const videoCont = document.getElementById('video-container');
-            const imageCont = document.getElementById('image-container');
-            const iframe = document.getElementById('video-iframe');
-            const img = document.getElementById('modal-img');
-
-            videoCont.classList.add('hidden');
-            imageCont.classList.add('hidden');
-            iframe.src = '';
-            img.src = '';
-
-            if (type === 'video') {
-                iframe.src = `https://www.youtube.com/embed/${url}?autoplay=1`;
-                videoCont.classList.remove('hidden');
-            } else {
-                img.src = url;
-                imageCont.classList.remove('hidden');
-                imageCont.scrollTop = 0;
-            }
-
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeMediaModal() {
-            const modal = document.getElementById('media-modal');
-            document.getElementById('video-iframe').src = '';
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.body.style.overflow = '';
-        }
-
-        document.getElementById('media-modal').addEventListener('click', closeMediaModal);
 
         // 네비게이션 및 부드러운 스크롤
         const navbar = document.getElementById('navbar');
